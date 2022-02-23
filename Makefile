@@ -7,6 +7,7 @@ RED =\e[91m#  Red color
 GRN =\e[92m#  Green color
 BLU =\e[96m#  Blue color
 YLW =\e[93m#  Yellow color
+BLD =\e[1m#   Bold
 RST =\e[0m#   Reset color
 
 # Function to print help
@@ -33,7 +34,7 @@ ifndef OCP_VER
 	$(error ERROR: You need to provide the OCP version for the cluster)
 endif
 	$(eval NAME ?= $(AUTOGEN_NAME))
-	@echo -e "Deploying regular OCP Cluster in PSI"
+	@echo -e "Deploying $(BLD)regular$(RST) OCP Cluster in PSI"
 	@echo -e "The cluster name is:\t$(NAME)"
 	@echo -e "Cluster version is:\t$(OCP_VER)"
 
@@ -43,7 +44,7 @@ ifndef OCP_VER
 	$(error ERROR: You need to provide the OCP version for the cluster)
 endif
 	$(eval NAME ?= $(AUTOGEN_NAME))
-	@echo "Deploying proxy OCP Cluster in AWS"
+	@echo -e "Deploying $(BLD)proxy$(RST) OCP Cluster in AWS"
 	@echo -e "The cluster name is:\t$(NAME)"
 	@echo -e "Cluster version is:\t$(OCP_VER)"
 
@@ -53,7 +54,7 @@ ifndef OCP_VER
 	$(error ERROR: You need to provide the OCP version for the cluster)
 endif
 	$(eval NAME ?= $(AUTOGEN_NAME))
-	@echo "Deploying disconnected OCP Cluster in AWS"
+	@echo -e "Deploying $(BLD)disconnected$(RST) OCP Cluster in AWS"
 	@echo -e "The cluster name is:\t$(NAME)"
 	@echo -e "Cluster version is:\t$(OCP_VER)"
 
@@ -62,4 +63,4 @@ destroy-cluster:
 ifndef NAME
 	$(error ERROR: You need to provide the name of the cluster to destroy)
 endif
-	@echo "Destroying cluster:\t$(NAME)"
+	@echo -e "Destroying cluster:\t$(NAME)"
