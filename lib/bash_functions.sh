@@ -17,7 +17,7 @@ if [[ ! -z ${LOGFILE} ]]
 fi
 
 timestamp() {
-    date '+%Y-%m-%d %H:%M:%S -- '
+    date --utc '+%Y-%m-%d %H:%M:%S -- '
 }
 
 log_ok() {
