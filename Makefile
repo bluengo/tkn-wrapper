@@ -29,6 +29,9 @@ help:
 
 .PHONY: deploy-ocp-regular
 deploy-ocp-regular:
+ifndef OCP_VER
+	$(error ERROR: You need to provide the OCP version for the cluster)
+endif
 	$(eval NAME ?= $(AUTOGEN_NAME))
 	@echo 'Deploying regular OCP Cluster in PSI'
 	@echo "The cluster name is $(NAME)"
@@ -36,14 +39,23 @@ deploy-ocp-regular:
 
 .PHONY: deploy-ocp-proxy
 deploy-ocp-proxy:
-	NAME ?= $(AUTOGEN_NAME)
+ifndef OCP_VER
+	$(error ERROR: You need to provide the OCP version for the cluster)
+endif
+	$(eval NAME ?= $(AUTOGEN_NAME))
 	@echo 'Deploying proxy OCP Cluster in AWS'
 
 .PHONY: deploy-ocp-disconnected
 deploy-ocp-disconnected:
-	NAME ?= $(AUTOGEN_NAME)
+ifndef OCP_VER
+	$(error ERROR: You need to provide the OCP version for the cluster)
+endif
+	$(eval NAME ?= $(AUTOGEN_NAME))
 	@echo 'Deploying disconnected OCP Cluster in AWS'
 
 .PHONY: destroy-cluster
 destroy-cluster:
-	@echo 'Destroying cluster $(1)'
+ifndef NAME
+	$(error ERROR: You need to provide the name of the cluster to destroy)
+endif
+	@echo 'Destroying cluster $(NAME)'
