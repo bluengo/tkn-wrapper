@@ -33,9 +33,9 @@ ifndef OCP_VER
 	$(error ERROR: You need to provide the OCP version for the cluster)
 endif
 	$(eval NAME ?= $(AUTOGEN_NAME))
-	@echo 'Deploying regular OCP Cluster in PSI'
-	@echo "The cluster name is $(NAME)"
-	@echo "Cluster version is $(OCP_VER)"
+	@echo -e "Deploying regular OCP Cluster in PSI"
+	@echo -e "The cluster name is:\t$(NAME)"
+	@echo -e "Cluster version is:\t$(OCP_VER)"
 
 .PHONY: deploy-ocp-proxy
 deploy-ocp-proxy:
@@ -43,7 +43,9 @@ ifndef OCP_VER
 	$(error ERROR: You need to provide the OCP version for the cluster)
 endif
 	$(eval NAME ?= $(AUTOGEN_NAME))
-	@echo 'Deploying proxy OCP Cluster in AWS'
+	@echo "Deploying proxy OCP Cluster in AWS"
+	@echo -e "The cluster name is:\t$(NAME)"
+	@echo -e "Cluster version is:\t$(OCP_VER)"
 
 .PHONY: deploy-ocp-disconnected
 deploy-ocp-disconnected:
@@ -51,11 +53,13 @@ ifndef OCP_VER
 	$(error ERROR: You need to provide the OCP version for the cluster)
 endif
 	$(eval NAME ?= $(AUTOGEN_NAME))
-	@echo 'Deploying disconnected OCP Cluster in AWS'
+	@echo "Deploying disconnected OCP Cluster in AWS"
+	@echo -e "The cluster name is:\t$(NAME)"
+	@echo -e "Cluster version is:\t$(OCP_VER)"
 
 .PHONY: destroy-cluster
 destroy-cluster:
 ifndef NAME
 	$(error ERROR: You need to provide the name of the cluster to destroy)
 endif
-	@echo 'Destroying cluster $(NAME)'
+	@echo "Destroying cluster:\t$(NAME)"
