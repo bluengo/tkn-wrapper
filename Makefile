@@ -1,7 +1,7 @@
 BOOTSTRAP_CLUSTER ?= "api-ocp-c1-prod-psi-redhat-com"
 USER_NAME = $(shell whoami)
 RANDOM_NUM = $(shell cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 8 | head -n 1)
-AUTOGEN_NAME = $(USER_NAME)-$(RANDOM_NUM)
+AUTOGEN_NAME = $(USER_NAME)-$(OCP_VER)-$(RANDOM_NUM)
 
 RED =\e[91m#  Red color
 GRN =\e[92m#  Green color
@@ -37,6 +37,14 @@ endif
 	@echo -e "Deploying $(BLD)regular$(RST) OCP Cluster in PSI"
 	@echo -e "The cluster name is:\t$(NAME)"
 	@echo -e "Cluster version is:\t$(OCP_VER)"
+	@tkn pipeline start flexy-install \
+		-n devtools-gitops \
+		-p CLUSTER_NAME="$(NAME)" \
+		-p TEMPLATE="private-templates/functionality-testing/aos-4_9/ipi-on-aws/versioned-installer" \
+		-w name=flexy-secrets,secret=flexy \
+		-w name=install-dir,claimName=install-dir \
+		-w name=plumbing-git,claimName=plumbing-git \
+		--showlog
 
 .PHONY: deploy-ocp-proxy
 deploy-ocp-proxy:
@@ -47,6 +55,7 @@ endif
 	@echo -e "Deploying $(BLD)proxy$(RST) OCP Cluster in AWS"
 	@echo -e "The cluster name is:\t$(NAME)"
 	@echo -e "Cluster version is:\t$(OCP_VER)"
+#####TODO
 
 .PHONY: deploy-ocp-disconnected
 deploy-ocp-disconnected:
@@ -57,6 +66,7 @@ endif
 	@echo -e "Deploying $(BLD)disconnected$(RST) OCP Cluster in AWS"
 	@echo -e "The cluster name is:\t$(NAME)"
 	@echo -e "Cluster version is:\t$(OCP_VER)"
+#####TODO
 
 .PHONY: destroy-cluster
 destroy-cluster:
@@ -64,3 +74,9 @@ ifndef NAME
 	$(error ERROR: You need to provide the name of the cluster to destroy)
 endif
 	@echo -e "Destroying cluster:\t$(NAME)"
+	@tkn pipeline start flexy-uninstall \
+		-n devtools-gitops \
+		-p CLUSTER_NAME="$(NAME)" \
+		-w name=flexy-secrets,secret=flexy \
+		-w name=install-dir,claimName=install-dir \
+		--showlog
