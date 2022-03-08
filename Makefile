@@ -44,7 +44,7 @@ endif
 		-w name=flexy-secrets,secret=flexy \
 		-w name=install-dir,claimName=install-dir \
 		-w name=plumbing-git,claimName=plumbing-git \
-		--showlog
+		--use-param-defaults --showlog
 
 .PHONY: deploy-ocp-proxy
 deploy-ocp-proxy:
@@ -79,4 +79,4 @@ endif
 		-p CLUSTER_NAME="$(NAME)" \
 		-w name=flexy-secrets,secret=flexy \
 		-w name=install-dir,claimName=install-dir \
-		--showlog
+		--use-param-defaults --showlog
