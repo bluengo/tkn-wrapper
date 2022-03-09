@@ -33,7 +33,7 @@ endef
 # Function to check if the current context points to the BOOTSTRAP_CLUSTER
 define check_bootstrap
 	$(eval CURRENT_CLUSTER = $(shell kubectl config current-context | cut -d '/' -f 2 | cut -d ':' -f 1))
-    $(if $(filter $(BOOTSTRAP_CLUSTER),$(CURRENT_CLUSTER)),
+	$(if $(filter $(BOOTSTRAP_CLUSTER),$(CURRENT_CLUSTER)),
 		@echo -e "Current bootstrap cluster is $(GRN)OK$(RST): $(CURRENT_CLUSTER)",
 		$(error ERROR: Your current oc/kubectl context is not pointing to the plubing-gitops OCP cluster to run pipelines)
 	)
