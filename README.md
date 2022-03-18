@@ -38,3 +38,22 @@ Below you will find the variables reference
 | OCP_VER           | OpenShift Version. It accepts major and minor in format *X.Y* (i.e. `4.9`).                                                              |
 | NAME              | Name for the OpenShift cluster. If not needed for the target, it will be auto-generated.                                                 |
 | BOOTSTRAP_CLUSTER | Specifies the OCP cluster name where the plumbing-gitops tekton pipelines are installed. <br/> Default: *api-ocp-c1-prod-psi-redhat-com* |
+
+---
+### Issues
+As far as PSI is very unstable, the target `make deploy-ocp-regular-psi` will fail very likely. This is an example of the output that you will find:
+```
+$ NAME="my-ocp46" OCP_VER="4.6" deploy-ocp-regular-psi
+(...)
+[provision-cluster : install-cluster] Creating secret with name cluster-my-ocp46
+[provision-cluster : install-cluster] secret/cluster-my-ocp46 created
+[provision-cluster : install-cluster] File has been uploaded to clusters/my-ocp46/installer-artifacts.zip 🚀File has been uploaded to clusters/my-ocp46/envvars 🚀
+
+failed to get logs for task provision-cluster : container step-install-cluster has failed  : [{"key":"mirror-registry","value":"quay.io","type":"TaskRunResult"},{"key":"StartedAt","value":"2022-03-18T08:40:45.026Z","type":"InternalTektonResult"}]
+```
+
+In such case, you will need to destroy the cluster before retrying.
+```
+$ NAME="my-ocp46" make destroy-cluster
+```
+
