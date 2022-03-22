@@ -58,7 +58,8 @@ endif
 	tkn pipeline start flexy-install \
 		-n devtools-gitops \
 		-p CLUSTER_NAME="$(NAME)" \
-		-p TEMPLATE="private-templates/functionality-testing/aos-$(subst .,_,$(OCP_VER))/ipi-on-osp/versioned-installer" \
+		-p OPENSHIFT_VERSION="$(OCP_VER)" \
+		-p TEMPLATE="private-templates/functionality-testing/aos-4_9/ipi-on-osp/versioned-installer" \
 		-w name=flexy-secrets,secret=flexy \
 		-w name=install-dir,claimName=install-dir \
 		-w name=plumbing-git,claimName=plumbing-git \
@@ -78,7 +79,8 @@ endif
 	tkn pipeline start flexy-install \
 		-n devtools-gitops \
 		-p CLUSTER_NAME="$(NAME)" \
-		-p TEMPLATE="private-templates/functionality-testing/aos-$(subst .,_,$(OCP_VER))/ipi-on-aws/versioned-installer" \
+		-p OPENSHIFT_VERSION="$(OCP_VER)" \
+		-p TEMPLATE="private-templates/functionality-testing/aos-4_9/ipi-on-aws/versioned-installer" \
 		-w name=flexy-secrets,secret=flexy \
 		-w name=install-dir,claimName=install-dir \
 		-w name=plumbing-git,claimName=plumbing-git \
@@ -98,7 +100,8 @@ endif
 	tkn pipeline start flexy-install \
 		-n devtools-gitops \
 		-p CLUSTER_NAME="$(NAME)" \
-		-p TEMPLATE="private-templates/functionality-testing/aos-$(subst .,_,$(OCP_VER))/ipi-on-aws/versioned-installer-customer_vpc-http_proxy" \
+		-p OPENSHIFT_VERSION="$(OCP_VER)" \
+		-p TEMPLATE="private-templates/functionality-testing/aos-4_9/ipi-on-aws/versioned-installer-customer_vpc-http_proxy" \
 		-w name=flexy-secrets,secret=flexy \
 		-w name=install-dir,claimName=install-dir \
 		-w name=plumbing-git,claimName=plumbing-git \
@@ -118,7 +121,8 @@ endif
 	tkn pipeline start flexy-install \
 		-n devtools-gitops \
 		-p CLUSTER_NAME="$(NAME)" \
-		-p TEMPLATE="private-templates/functionality-testing/aos-$(subst .,_,$(OCP_VER))/ipi-on-aws/versioned-installer-customer_vpc-disconnected" \
+		-p OPENSHIFT_VERSION="$(OCP_VER)" \
+		-p TEMPLATE="private-templates/functionality-testing/aos-4_9/ipi-on-aws/versioned-installer-customer_vpc-disconnected" \
 		-w name=flexy-secrets,secret=flexy \
 		-w name=install-dir,claimName=install-dir \
 		-w name=plumbing-git,claimName=plumbing-git \
