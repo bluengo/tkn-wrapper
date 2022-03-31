@@ -27,7 +27,7 @@ define print_help
 	@echo -e "\n$(BLD)How to use it:$(RST)"
 	@echo -e "\t1) First \"oc login\" into the BOOTSTRAP_CLUSTER to have access to the pipelines"
 	@echo -e "\t2) Set the needed variables in front of the make command and run your desired target. For instance:"
-	@echo -e "\t\t$(YLW)OCP_VER$(RST)=4.8 $(BLU)NAME$(RST)=\"my-ocp-cluster\" $(BLD)make $(GRN)deploy-ocp-regular-psi$(RST)\n"
+	@echo -e "\t\t$(YLW)OCP_VER$(RST)=\"stable-4.8\" $(BLU)NAME$(RST)=\"my-ocp-cluster\" $(BLD)make $(GRN)deploy-ocp-regular-psi$(RST)\n"
 endef
 
 # Function to check if the current context points to the BOOTSTRAP_CLUSTER
@@ -58,7 +58,8 @@ endif
 	tkn pipeline start flexy-install \
 		-n devtools-gitops \
 		-p CLUSTER_NAME="$(NAME)" \
-		-p TEMPLATE="private-templates/functionality-testing/aos-$(subst .,_,$(OCP_VER))/ipi-on-osp/versioned-installer" \
+		-p OPENSHIFT_VERSION="$(OCP_VER)" \
+		-p TEMPLATE="private-templates/functionality-testing/aos-4_9/ipi-on-osp/versioned-installer" \
 		-w name=flexy-secrets,secret=flexy \
 		-w name=install-dir,claimName=install-dir \
 		-w name=plumbing-git,claimName=plumbing-git \
@@ -78,7 +79,8 @@ endif
 	tkn pipeline start flexy-install \
 		-n devtools-gitops \
 		-p CLUSTER_NAME="$(NAME)" \
-		-p TEMPLATE="private-templates/functionality-testing/aos-$(subst .,_,$(OCP_VER))/ipi-on-aws/versioned-installer" \
+		-p OPENSHIFT_VERSION="$(OCP_VER)" \
+		-p TEMPLATE="private-templates/functionality-testing/aos-4_9/ipi-on-aws/versioned-installer" \
 		-w name=flexy-secrets,secret=flexy \
 		-w name=install-dir,claimName=install-dir \
 		-w name=plumbing-git,claimName=plumbing-git \
@@ -98,7 +100,8 @@ endif
 	tkn pipeline start flexy-install \
 		-n devtools-gitops \
 		-p CLUSTER_NAME="$(NAME)" \
-		-p TEMPLATE="private-templates/functionality-testing/aos-$(subst .,_,$(OCP_VER))/ipi-on-aws/versioned-installer-customer_vpc-http_proxy" \
+		-p OPENSHIFT_VERSION="$(OCP_VER)" \
+		-p TEMPLATE="private-templates/functionality-testing/aos-4_9/ipi-on-aws/versioned-installer-customer_vpc-http_proxy" \
 		-w name=flexy-secrets,secret=flexy \
 		-w name=install-dir,claimName=install-dir \
 		-w name=plumbing-git,claimName=plumbing-git \
@@ -118,7 +121,8 @@ endif
 	tkn pipeline start flexy-install \
 		-n devtools-gitops \
 		-p CLUSTER_NAME="$(NAME)" \
-		-p TEMPLATE="private-templates/functionality-testing/aos-$(subst .,_,$(OCP_VER))/ipi-on-aws/versioned-installer-customer_vpc-disconnected" \
+		-p OPENSHIFT_VERSION="$(OCP_VER)" \
+		-p TEMPLATE="private-templates/functionality-testing/aos-4_9/ipi-on-aws/versioned-installer-customer_vpc-disconnected" \
 		-w name=flexy-secrets,secret=flexy \
 		-w name=install-dir,claimName=install-dir \
 		-w name=plumbing-git,claimName=plumbing-git \
