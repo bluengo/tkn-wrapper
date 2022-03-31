@@ -27,7 +27,7 @@ define print_help
 	@echo -e "\n$(BLD)How to use it:$(RST)"
 	@echo -e "\t1) First \"oc login\" into the BOOTSTRAP_CLUSTER to have access to the pipelines"
 	@echo -e "\t2) Set the needed variables in front of the make command and run your desired target. For instance:"
-	@echo -e "\t\t$(YLW)OCP_VER$(RST)=4.8 $(BLU)NAME$(RST)=\"my-ocp-cluster\" $(BLD)make $(GRN)deploy-ocp-regular-psi$(RST)\n"
+	@echo -e "\t\t$(YLW)OCP_VER$(RST)=\"stable-4.8\" $(BLU)NAME$(RST)=\"my-ocp-cluster\" $(BLD)make $(GRN)deploy-ocp-regular-psi$(RST)\n"
 endef
 
 # Function to check if the current context points to the BOOTSTRAP_CLUSTER
