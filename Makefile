@@ -1,4 +1,5 @@
 BOOTSTRAP_CLUSTER ?= api-ocp-c1-prod-psi-redhat-com
+LAUNCHER_VARS_PSI ?= '{"os_ext_network":"provider_net_cci_12","bootstrap_in_place":"yes","dns_solution":"route53"}'
 SHELL := /bin/bash
 USER_NAME = $(shell whoami)
 RANDOM_NUM = $(shell cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 8 | head -n 1)
@@ -59,6 +60,7 @@ endif
 		-n devtools-gitops \
 		-p CLUSTER_NAME="$(NAME)" \
 		-p OPENSHIFT_VERSION="$(OCP_VER)" \
+		-p LAUNCHER_VARS=$(LAUNCHER_VARS_PSI) \
 		-p TEMPLATE="private-templates/functionality-testing/aos-4_9/ipi-on-osp/versioned-installer" \
 		-w name=flexy-secrets,secret=flexy \
 		-w name=install-dir,claimName=install-dir \
