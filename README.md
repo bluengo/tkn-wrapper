@@ -44,6 +44,8 @@ You can choose one of the versions available on following links:
 - [OpenShift v4 OCP](https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/)
 - [Openshift v4 OCP Dev Preview](https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp-dev-preview/)
 
+> Take a look at the Release Status [webpage](https://openshift-release.apps.ci.l2s4.p1.openshiftapps.com/#4-stable)
+
 **Examples:**
 | **Value**  | **Description**                                                                       |
 |------------|---------------------------------------------------------------------------------------|
